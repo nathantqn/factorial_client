@@ -4,7 +4,9 @@ class FactorialController < ApplicationController
     end
 
     def calculate
-        @u = `python factorial.py #{params[:input][:number]}`
+        
+        Publisher.publish("send_number", {number: params[:input][:number]})
+        
         render 'hello'
     end
 
